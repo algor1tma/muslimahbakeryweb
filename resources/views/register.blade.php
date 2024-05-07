@@ -52,9 +52,9 @@
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
-                                <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                    <img src="assets/img/logo.png" alt="">
-                                    <span class="d-none d-lg-block">NiceAdmin</span>
+                                <a href="index.html" class="logo d-flex align-items-center w-auto flex-column gap-2">
+                                    <img src="assets/img/new.jpg" alt="" height="35px">
+                                    <span class="d-none d-lg-block">Muslimah Bakery</span>
                                 </a>
                             </div><!-- End Logo -->
 

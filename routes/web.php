@@ -25,5 +25,11 @@ Route::get('/laporan',[AdminController::class,'laporan'])->name('laporan');
 Route::get('/produk',[AdminController::class,'produk'])->name('produk');
 Route::get('/transaksi',[AdminController::class,'transaksi'])->name('transaksi');
 Route::get('/dataadmin',[AdminController::class,'dataadmin'])->name('dataadmin');
+Route::get('/profile',[AdminController::class,'profile'])->name('profile');
+
+
 Route::get('/',[LoginController::class,'login'])->name('login');
+
+
 Route::get('/register',[RegisterController::class,'register'])->name('register');
+

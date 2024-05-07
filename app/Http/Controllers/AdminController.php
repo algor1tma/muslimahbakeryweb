@@ -13,4 +13,16 @@ class AdminController extends Controller
     public function penjualan(){
         return view('penjualan');
     }
+    public function laporan(){
+        return view('laporan');
+    }
+    public function dataadmin(){
+        return view('dataadmin');
+    }
+    public function produk(){
+        return view('produk');
+    }
+    public function transaksi(){
+        return view('transaksi');
+    }
 }

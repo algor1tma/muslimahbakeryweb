@@ -17,7 +17,12 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Produk</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-2">Produk</h5>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Tambah</button>
+                            </div>
+                        </div>
 
 
                         <!-- Table with stripped rows -->

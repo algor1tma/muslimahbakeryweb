@@ -20,9 +20,9 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('penjualan') }}">
+        <a class="nav-link collapsed" href="{{ route('user') }}">
             <i class="ri-store-2-line"></i>
-            <span>Penjualan</span>
+            <span>User</span>
         </a>
     </li><!-- End Profile Page Nav -->
 

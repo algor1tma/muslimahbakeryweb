@@ -23,7 +23,8 @@
       <div class="row mb-3">
         <label for="inputText" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="name"> <!-- Added name attribute -->
+          {{-- <input type="text" class="form-control" name="name"> <!-- Added name attribute --> --}}
+          <input type="text" class="form-control" placeholder="Your name" aria-label="Your Name" aria-describedby="basic-addon1" name="name">
         </div>
       </div>
       <div class="row mb-3">
@@ -47,7 +48,8 @@
       <div class="row mb-3">
         <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" name="password"> <!-- Added name attribute -->
+          {{-- <input type="password" class="form-control" name="password"> <!-- Added name attribute --> --}}
+          <input type="password" class="form-control" placeholder="input min 6 character" aria-label="input min 6 character" aria-describedby="basic-addon1" name="password">
         </div>
       </div>
       <div class="row mb-3">

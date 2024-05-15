@@ -46,6 +46,15 @@ Route::post('/dataadmin/store',[AdminController::class,'store']);
 
 
 
+Route::get('/kategori',[AdminController::class,'kategori'])->name('kategori');
+Route::get('kategori/{kategori}/editkategori', [AdminController::class, 'editkategori'])->name('editkategori');
+Route::put('kategori/{kategori}', [AdminController::class, 'updatekategori'])->name('updatekategori');
+Route::delete('kategori/{kategori}', [AdminController::class, 'deletekategori'])->name('deletekategori');
+Route::get('/tambahkatgeori',[AdminController::class,'tambahkategori'])->name('tambahkategori');
+Route::post('/kategori/storekategori', [AdminController::class, 'storekategori'])->name('storekategori');
+
+
+
 Route::get('/profile',[AdminController::class,'profile'])->name('profile');
 
 

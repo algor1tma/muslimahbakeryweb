@@ -45,7 +45,14 @@
             <i class="bi bi-card-list"></i>
             <span>Laporan</span>
         </a>
-    </li><!-- End Register Page Nav -->
+    </li><!-- End laporan Page Nav -->
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('kategori') }}">
+            <i class="bi bi-card-list"></i>
+            <span>Kategori</span>
+        </a>
+    </li><!-- End Kategori Page Nav -->
 
     <!-- End Login Page Nav -->
 

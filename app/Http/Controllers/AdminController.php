@@ -6,8 +6,11 @@ use App\Http\Requests\AdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\KategoriRequest;
+use App\Http\Requests\UpdateKategoriRequest;
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,13 +21,9 @@ class AdminController extends Controller
         return view('dashbord');
     }
 
-
-
-
-    
     public function user()
     {
-        $users = DB::table('users')->get();
+        $users = User::all();
         return view('user', compact('users'));
     }
 
@@ -45,42 +44,27 @@ class AdminController extends Controller
         return redirect()->route('user');
     }
 
-    
-
     public function updateuser(UpdateUserRequest $request, User $user)
     {
         $validatedData = $request->validated();
         $user->update($validatedData);
         return redirect()->route('user');
     }
+
     public function deleteuser(User $user)
     {
         $user->delete();
-        return redirect('/user');
+        return redirect()->route('user');
     }
-
-
-
-
-
 
     public function laporan()
     {
         return view('laporan');
     }
 
-
-
-
-
-
-
-
-    
-
     public function dataadmin()
     {
-        $admins = DB::table('admins')->get();
+        $admins = Admin::all();
         return view('dataadmin', compact('admins'));
     }
 
@@ -107,26 +91,55 @@ class AdminController extends Controller
         $admin->update($validatedData);
         return redirect()->route('dataadmin');
     }
+
     public function delete(Admin $admin)
     {
         $admin->delete();
-        return redirect('/dataadmin');
+        return redirect()->route('dataadmin');
     }
-
-
-
-
-
-
-
-
-
-
 
     public function produk()
     {
         return view('produk');
     }
+
+    public function kategori()
+    {
+            $kategoris = DB::table('kategoris')->get();
+            return view('kategori', compact('kategoris'));
+    }
+
+    public function editkategori(Kategori $kategori)
+        {
+            return view('editkategori', compact('kategori'));
+        }
+
+    public function tambahkategori()
+        {
+            return view('tambahkategori');
+        }
+
+    public function storekategori(KategoriRequest $request)
+        {
+            $validatedData = $request->validated();
+            Kategori::create($validatedData);
+            return redirect()->route('kategori');
+        }
+
+    public function updatekategori(UpdateKategoriRequest $request, Kategori $kategori)
+        {
+            $validatedData = $request->validated();
+            $kategori->update($validatedData);
+            return redirect()->route('kategori');
+        }
+
+    public function deletekategori(Kategori $kategori)
+        {
+            $kategori->delete();
+            return redirect()->route('kategori');
+        }
+
+
 
     public function transaksi()
     {

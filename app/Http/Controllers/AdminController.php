@@ -100,6 +100,7 @@ class AdminController extends Controller
 
     public function produk()
     {
+        
         return view('produk');
     }
 

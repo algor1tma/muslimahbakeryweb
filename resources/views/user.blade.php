@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="pagetitle">
-    
+
     <h1>Data User</h1>
     <nav>
         <ol class="breadcrumb">
@@ -10,7 +10,7 @@
             <li class="breadcrumb-item active"><a href="{{ route('user') }}"> User</a></li>
         </ol>
     </nav>
-   
+
 </div><!-- End Page Title -->
 
 <section class="section">
@@ -24,7 +24,7 @@
                             <a href="{{ route('tambahuser') }}" class="btn btn-primary">Tambah</a>
                         </div>
                     </div>
-                    
+
                     <!-- Table with stripped rows -->
                     <table class="table datatable">
                         <thead>

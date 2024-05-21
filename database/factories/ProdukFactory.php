@@ -21,6 +21,7 @@ class ProdukFactory extends Factory
             'harga' => $this->faker->randomNumber(5, true),  // Generates a random number with 5 digits
             'spesifikasi' => $this->faker->sentence(),  // Generates a random sentence
             'gambar' => $this->faker->imageUrl(640, 480, 'products', true),  // Generates a URL for a product image
+            //
         ];
     }
 }

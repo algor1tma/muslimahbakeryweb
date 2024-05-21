@@ -33,6 +33,12 @@ Route::delete('user/{user}', [AdminController::class, 'deleteuser'])->name('dele
 Route::get('/laporan',[AdminController::class,'laporan'])->name('laporan');
 
 Route::get('/produk',[AdminController::class,'produk'])->name('produk');
+Route::get('produk/{produk}/editproduk', [AdminController::class, 'editproduk'])->name('editproduk');
+Route::put('produk/{produk}', [AdminController::class, 'updateproduk'])->name('updateproduk');
+Route::delete('produk/{produk}', [AdminController::class, 'deleteproduk'])->name('deleteproduk');
+Route::get('/tambahproduk',[AdminController::class,'tambahproduk'])->name('tambahproduk');
+Route::post('/produk/storeproduk',[AdminController::class,'storeproduk'])->name('storeproduk'); // Add a named route for clarity
+Route::delete('produk/{produk}', [AdminController::class, 'deleteproduk'])->name('deleteproduk');
 
 Route::get('/transaksi',[AdminController::class,'transaksi'])->name('transaksi');
 

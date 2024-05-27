@@ -41,7 +41,8 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $prdk->name }}</td>
-                                <td>{{ $prdk->harga }}</td>
+                                {{-- <td>{{ $prdk->harga }}</td> --}}
+                                <td>Rp {{ number_format($prdk->harga, 0, ',', '.') }}</td>
                                 <td>{{ $prdk->spesifikasi }}</td>
                                 <td>
                                     <img src="{{ asset($prdk->gambar) }}" alt="{{ $prdk->gambar }}" style="max-width: 100px;">

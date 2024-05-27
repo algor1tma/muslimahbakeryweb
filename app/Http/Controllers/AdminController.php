@@ -14,6 +14,7 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\Kategori;
 use App\Models\Produk;
+use App\Models\Pesanan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -269,10 +270,56 @@ class AdminController extends Controller
 
 
 
-    public function transaksi()
+
+
+
+    // public function pesanan()
+    // {
+    //     return view('pesanan');
+    // }
+    public function pesanan()
     {
-        return view('transaksi');
+        $pesanans = Pesanan::with('user')->get();
+        return view('pesanan', compact('pesanans'));
     }
+    
+    
+    public function editpesanan(Pesanan $pesanan)
+    {
+        $users = User::all();
+        return view('editpesanan', compact('pesanan,userss'));
+        // $kategoris = Kategori::all();
+        // return view('editproduk', compact('produk','kategoris'));
+    }
+    
+    // public function tambahpesanan()
+    // {
+    //     return view('tambahpesanan');
+    // }
+    
+    // public function storepesanan(PesananRequest $request)
+    // {
+    //     $validatedData = $request->validated();
+    //     Pesanan::create($validatedData);
+    //     return redirect()->route('pesanan')->with('success', 'Pesanan created successfully.');
+    // }
+    
+    // public function updatepesanan(UpdatePesananRequest $request, Pesanan $pesanan)
+    // {
+    //     $validatedData = $request->validated();
+    //     $pesanan->update($validatedData);
+    //     return redirect()->route('pesanan')->with('success', 'Pesanan updated successfully.');
+    // }
+    
+    public function deletepesanan(Pesanan $pesanan)
+    {
+        $pesanan->delete();
+        return redirect()->route('pesanan')->with('success', 'Pesanan deleted successfully.');
+    }
+
+
+
+
 
     public function profile()
     {

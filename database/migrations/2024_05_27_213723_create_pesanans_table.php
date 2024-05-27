@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('address');
             $table->text('catatan')->nullable();
             $table->decimal('total_harga', 8, 2);
+            $table->enum('status', ['lunas', 'belum lunas']);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

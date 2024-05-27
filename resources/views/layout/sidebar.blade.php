@@ -41,9 +41,9 @@
     </li><!-- End F.A.Q Page Nav -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('transaksi') }}">
+        <a class="nav-link collapsed" href="{{ route('pesanan') }}">
             <i class="ri-money-dollar-box-line"></i>
-            <span>Transaksi</span>
+            <span>Pesanan</span>
         </a>
     </li><!-- End Contact Page Nav -->
 

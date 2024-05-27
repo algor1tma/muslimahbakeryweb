@@ -40,7 +40,14 @@ Route::get('/tambahproduk',[AdminController::class,'tambahproduk'])->name('tamba
 Route::post('/produk/storeproduk',[AdminController::class,'storeproduk'])->name('storeproduk');
 Route::delete('produk/{produk}', [AdminController::class, 'deleteproduk'])->name('deleteproduk');
 
-Route::get('/transaksi',[AdminController::class,'transaksi'])->name('transaksi');
+Route::get('/pesanan', [AdminController::class, 'pesanan'])->name('pesanan');
+Route::get('pesanan/{pesanan}/editpesanan', [AdminController::class, 'editpesanan'])->name('editpesanan');
+Route::put('pesanan/{pesanan}', [AdminController::class, 'updatepesanan'])->name('updatepesanan');
+Route::delete('pesanan/{pesanan}', [AdminController::class, 'deletepesanan'])->name('deletepesanan');
+// Route::get('/tambahpesanan',[AdminController::class,'tambahproduk'])->name('tambahproduk');
+Route::post('/pesanan/storepesanan', [AdminController::class, 'storepesanan'])->name('storepesanan');
+Route::delete('pesanan/{pesanan}', [AdminController::class, 'deletepesanan'])->name('deletepesanan');
+
 
 
 Route::get('/dataadmin',[AdminController::class,'dataadmin'])->name('dataadmin');

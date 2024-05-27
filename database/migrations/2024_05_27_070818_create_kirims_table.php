@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('pesanan_id');
             $table->unsignedBigInteger('admin_id');
-            $table->string('status');
+            $table->enum('status', ['lunas', 'belum lunas']);
             $table->timestamps();
 
             $table->foreign('pesanan_id')->references('id')->on('pesanans')->onDelete('cascade');

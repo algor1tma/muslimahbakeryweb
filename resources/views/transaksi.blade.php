@@ -32,7 +32,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @foreach ($pesanans as $psns)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $psns->created_at }}</td>
+                                    <td>{{ $psns->user->name }}</td>
+                                    <td>{{ $psns->total_harga }}</td>
+                                    <td>{{ $psns->kirim->status }}</td>                            
+                                    <td>
+                                        <a href="{{ route('edittransaksi', $psns->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                        <form action="{{ url('/transaksi', $psns->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                        </form>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->

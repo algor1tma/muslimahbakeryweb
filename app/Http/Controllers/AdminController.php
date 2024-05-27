@@ -14,9 +14,11 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\Kategori;
 use App\Models\Produk;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+
 
 class AdminController extends Controller
 {
@@ -125,32 +127,39 @@ class AdminController extends Controller
     
     public function produk()
     {
-        $produks = Produk::all();
+        // Mengambil semua produk beserta relasi kategorinya
+        $produks = Produk::with('kategori')->get();
         return view('produk', compact('produks'));
     }
 
     public function editproduk(Produk $produk)
     {
-        return view('editproduk', compact('produk'));
+        $kategoris = Kategori::all();
+        return view('editproduk', compact('produk','kategoris'));
     }
 
     public function tambahproduk()
-    {
-        return view('tambahproduk');
-    }
+{
+    $kategoris = Kategori::all();
+    return view('tambahproduk', compact('kategoris'));
+}
 
     public function storeproduk(ProdukRequest $request)
     {
         $validatedData = $request->validated();
+    
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
             $gambarPath = $gambar->storeAs('public/assets/img', $gambar->getClientOriginalName());
             $validatedData['gambar'] = str_replace('public/', '', $gambarPath);
         }
+    
         Produk::create($validatedData);
+    
         return redirect()->route('produk');
     }
 
+    
     public function updateproduk(UpdateProdukRequest $request, Produk $produk)
 {
     $validated = $request->validated();

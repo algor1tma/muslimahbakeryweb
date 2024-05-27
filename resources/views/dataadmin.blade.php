@@ -27,25 +27,23 @@
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>No telp</th>
-                                    <th>Alamat</th>
-                                    <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
-                                    <th>Action</th>
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">No telp</th>
+                                    <th class="text-center">Alamat</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($admins as $adm)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $adm->name }}</td>
-                                        <td>{{ $adm->email }}</td>
-                                        <td>{{ $adm->no_telp }}</td>
-                                        <td>{{ $adm->address }}</td>
-                                        <td>{{ $adm->created_at }}</td>
-                                        <td>
+                                        <td class="text-center">{{ $loop->iteration }}</td>
+                                        <td class="text-center">{{ $adm->name }}</td>
+                                        <td class="text-center">{{ $adm->email }}</td>
+                                        <td class="text-center">{{ $adm->no_telp }}</td>
+                                        <td class="text-center">{{ $adm->address }}</td>
+                                        <td class="text-center">
                                             <a href="{{ route('editadmin', $adm->id) }}"
                                                 class="btn btn-sm btn-warning">Edit</a>
                                             <form action="{{ url('/dataadmin', $adm->id) }}" method="POST"

@@ -23,9 +23,10 @@ class UpdateProdukRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:100',
-            'harga' => 'required|numeric|min:0',
+            'harga' => 'required|string|max:50',
             'spesifikasi' => 'nullable|string',
-            'gambar' => 'nullable|image|max:2048', // 2048 KB max size for image
+            'gambar' => 'nullable|image|max:2048', // Change to image validation
+            'kategori_id' => 'required|exists:kategoris,id',
         ];
     }
 }

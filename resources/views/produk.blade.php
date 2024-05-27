@@ -32,7 +32,7 @@
                                 <th>Price</th>
                                 <th>Specification</th>
                                 <th>Picture</th>
-                                <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
+                                <th>Kategori</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -46,8 +46,7 @@
                                 <td>
                                     <img src="{{ asset($prdk->gambar) }}" alt="{{ $prdk->gambar }}" style="max-width: 100px;">
                                 </td>
-                                
-                                <td>{{ $prdk->created_at }}</td>
+                                <td>{{ $prdk->kategori->name }}</td>                            
                                 <td>
                                     <a href="{{ route('editproduk', $prdk->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                     <form action="{{ url('/produk', $prdk->id) }}" method="POST" style="display: inline;">

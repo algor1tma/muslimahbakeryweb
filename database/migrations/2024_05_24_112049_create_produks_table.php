@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('harga');
             $table->string('spesifikasi');
             $table->string('gambar');
+            $table->unsignedBigInteger('kategori_id'); // Menambahkan kolom kategori_id
             $table->timestamps();
+
+            $table->foreign('kategori_id')->references('id')->on('kategoris')->onDelete('cascade');
         });
     }
 

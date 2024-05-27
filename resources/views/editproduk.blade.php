@@ -18,7 +18,6 @@
 
     <!-- General Form Elements -->
     <form method="POST" action="{{ route('updateproduk', $produk->id) }}" enctype="multipart/form-data">
-
       @method('PUT')
       @csrf
 
@@ -46,6 +45,20 @@
           <input type="file" class="form-control" name="gambar">
         </div>
       </div>
+      <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Select Kategori</label>
+        <div class="col-sm-10">
+          <select class="form-select" name="kategori_id">
+            <option selected>Open this select Kategori</option>
+            @foreach ($kategoris as $kategori)
+              <option value="{{ $kategori->id }}" {{ $produk->kategori_id == $kategori->id ? 'selected' : '' }}>
+                {{ $kategori->name }}
+              </option>
+            @endforeach
+          </select>
+        </div>
+      </div>
+
       <div class="row mb-3">
         <div class="col-sm-12 text-center">
           <a href="{{ route('produk') }}" class="btn btn-secondary mx-3">Back</a>

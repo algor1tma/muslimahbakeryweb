@@ -29,23 +29,21 @@
                     <table class="table datatable">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>No telp</th>
-                                <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
-                                <th>Action</th>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">No telp</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($users as $usr)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $usr->name }}</td>
-                                <td>{{ $usr->email }}</td>
-                                <td>{{ $usr->no_telp }}</td>
-                                <td>{{ $usr->created_at }}</td>
-                                <td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $usr->name }}</td>
+                                <td class="text-center">{{ $usr->email }}</td>
+                                <td class="text-center">{{ $usr->no_telp }}</td>
+                                <td class="text-center">
                                     <a href="{{ route('edituser', $usr->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                     <form action="{{ url('/user', $usr->id) }}" method="POST" style="display: inline;">
                                         @csrf

@@ -18,6 +18,7 @@ class ProdukSeeder extends Seeder
             'harga' => '1000',
             'spesifikasi' => 'apik',
             'gambar' => '',
+            'kategori_id' => '1',
         ]);
     }
 }

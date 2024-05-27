@@ -27,19 +27,17 @@
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Name</th>
-                                    <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
-                                    <th>Action</th>
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($kategoris as $ktr)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $ktr->name }}</td>
-                                        <td>{{ $ktr->created_at }}</td>
-                                        <td>
+                                        <td class="text-center">{{ $loop->iteration }}</td>
+                                        <td class="text-center">{{ $ktr->name }}</td>
+                                        <td class="text-center">
                                             <a href="{{ route('editkategori', $ktr->id) }}"
                                                 class="btn btn-sm btn-warning">Edit</a>
                                             <form action="{{ url('/kategori', $ktr->id) }}" method="POST"

@@ -37,7 +37,7 @@ Route::get('produk/{produk}/editproduk', [AdminController::class, 'editproduk'])
 Route::put('produk/{produk}', [AdminController::class, 'updateproduk'])->name('updateproduk');
 Route::delete('produk/{produk}', [AdminController::class, 'deleteproduk'])->name('deleteproduk');
 Route::get('/tambahproduk',[AdminController::class,'tambahproduk'])->name('tambahproduk');
-Route::post('/produk/storeproduk',[AdminController::class,'storeproduk'])->name('storeproduk'); // Add a named route for clarity
+Route::post('/produk/storeproduk',[AdminController::class,'storeproduk'])->name('storeproduk');
 Route::delete('produk/{produk}', [AdminController::class, 'deleteproduk'])->name('deleteproduk');
 
 Route::get('/transaksi',[AdminController::class,'transaksi'])->name('transaksi');
@@ -68,4 +68,3 @@ Route::get('/',[LoginController::class,'login'])->name('login');
 
 
 Route::get('/register',[RegisterController::class,'register'])->name('register');
-

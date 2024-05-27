@@ -26,6 +26,7 @@ class ProdukRequest extends FormRequest
             'harga' => 'required|string|max:50', // Assume price as a string with a max length of 50 characters
             'spesifikasi' => 'nullable|string',
             'gambar' => 'nullable|string|max:255', // Assume image as a string with a max length of 255 characters
+            'kategori_id' => 'required|exists:kategoris,id'
         ];
     }
 }

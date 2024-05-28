@@ -39,15 +39,17 @@
                                         <td>Rp {{ number_format($psns->total_harga, 0, ',', '.') }}</td>
                                         <td>{{ $psns->status }}</td>
                                         <td>
-                                            
-                                            <a class="btn btn-sm btn-info">Detail</a>
-                                            <a href="{{ route('editpesanan', $psns->id) }}" class="btn btn-sm btn-warning">Lunas</a>
+                                            <a href="{{ route('detailpesanan', $psns->id) }}" class="btn btn-sm btn-info">Detail</a>
+                                            <form action="{{ route('pesanan.lunas', $psns->id) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-warning">Lunas</button>
+                                            </form>
                                             <form action="{{ url('/pesanan', $psns->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                             </form>
-                                        </td>                                        
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

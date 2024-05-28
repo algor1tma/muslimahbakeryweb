@@ -15,6 +15,8 @@ use App\Models\User;
 use App\Models\Kategori;
 use App\Models\Produk;
 use App\Models\Pesanan;
+use App\Models\PesananDetail;
+use App\Models\Laporan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -69,9 +71,10 @@ class AdminController extends Controller
 
 
 
-    public function laporan()
+    public function showLaporan()
     {
-        return view('laporan');
+        $laporans = Laporan::with('user', 'admin')->get();
+        return view('laporan', compact('laporans'));
     }
 
 
@@ -282,15 +285,93 @@ class AdminController extends Controller
         $pesanans = Pesanan::with('user')->get();
         return view('pesanan', compact('pesanans'));
     }
-    
-    
-    public function editpesanan(Pesanan $pesanan)
+
+    public function detailpesanan(Pesanan $pesanan)
     {
-        $users = User::all();
-        return view('editpesanan', compact('pesanan,userss'));
-        // $kategoris = Kategori::all();
-        // return view('editproduk', compact('produk','kategoris'));
+        $user = $pesanan->user;
+        // Mengambil detail pesanan beserta relasi produk
+        $pesanan_details = PesananDetail::with('produk')->where('pesanan_id', $pesanan->id)->get();
+    
+        // Hitung total harga
+        $total = $pesanan_details->sum(function($psndtl) {
+            return $psndtl->qty * $psndtl->produk->harga;
+        });
+    
+        // Simpan total ke tabel pesanans
+        $pesanan->total_harga = $total;
+        $pesanan->save();
+    
+        // Tambahkan log untuk debugging
+        Log::info('Total harga diperbarui:', ['pesanan_id' => $pesanan->id, 'total_harga' => $total]);
+    
+        return view('detailpesanan', compact('pesanan', 'user', 'pesanan_details', 'total'));
     }
+
+    // public function markAsPaid($id)
+    // {
+    //     // Ambil data pesanan
+    //     $pesanan = Pesanan::find($id);
+    
+    //     if ($pesanan) {
+    //         // Pindahkan data pesanan ke tabel laporan
+    //         $laporan = new Laporan();
+    //         $laporan->user_id = $pesanan->user_id;
+    //         $laporan->tanggal_pesanan = $pesanan->created_at;
+    //         $laporan->nama = $pesanan->user->name;
+    //         $laporan->total_harga = $pesanan->total_harga;
+    //         $laporan->save();
+    
+    //         // Ubah status pesanan menjadi 'Lunas'
+    //         $pesanan->status = 'Lunas';
+    //         $pesanan->save();
+    
+    //         return redirect()->route('pesanan.index')->with('success', 'Pesanan telah ditandai sebagai lunas dan dipindahkan ke laporan.');
+    //     }
+    
+    //     return redirect()->route('pesanan.index')->with('error', 'Pesanan tidak ditemukan.');
+    // }
+
+    public function markAsPaid($id)
+    {
+        // Ambil data pesanan
+        $pesanan = Pesanan::find($id);
+    
+        if ($pesanan) {
+            // Temukan admin dengan ID 1
+            $admin = Admin::find(1);
+    
+            if ($admin) {
+                // Pindahkan data pesanan ke tabel laporan
+                Laporan::create([
+                    'user_id' => $pesanan->user_id,
+                    'status' => 'lunas',
+                    'tanggal_pesanan' => $pesanan->created_at,
+                    'nama' => $pesanan->user->name,
+                    'admin_id' => $admin->id, // Gunakan ID admin yang ditemukan
+                    'total_harga' => $pesanan->total_harga
+                ]);
+    
+                // Hapus data pesanan dari tabel pesanan
+                $pesanan->delete();
+    
+                return redirect()->route('pesanan')->with('success', 'Pesanan telah ditandai sebagai lunas dan dipindahkan ke laporan.');
+            } else {
+                return redirect()->route('pesanan')->with('error', 'Admin dengan ID 1 tidak ditemukan.');
+            }
+        }
+    
+        return redirect()->route('pesanan')->with('error', 'Pesanan tidak ditemukan.');
+    }
+    
+    
+    
+
+
+    
+    
+
+
+
     
     // public function tambahpesanan()
     // {

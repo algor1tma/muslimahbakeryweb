@@ -1,12 +1,12 @@
 @extends('layout.app')
+
 @section('content')
 <div class="pagetitle">
-    
     <h1>Laporan</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
-            <li class="breadcrumb-item active"><a href="{{ route('laporan') }}"> Laporan</a></li>
+            <li class="breadcrumb-item active">Laporan</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
@@ -14,7 +14,6 @@
 <section class="section">
     <div class="row">
         <div class="col-lg-12">
-
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
@@ -23,29 +22,34 @@
                             <a id="printBtn" class="btn btn-primary">Print</a>
                         </div>
                     </div>
-                    
-
 
                     <!-- Table with stripped rows -->
                     <table class="table datatable">
                         <thead>
                             <tr>
-                                <th><b>Name</b></th>
-                                <th>Ext.</th>
-                                <th>City</th>
-                                <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
-                                <th>Completion</th>
+                                <th>No</th>
+                                <th>Tanggal Pesanan</th>
+                                <th>Nama</th>
+                                <th>Price</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Data rows go here -->
+                            @foreach ($laporans as $laporan)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($laporan->tanggal_pesanan)->format('d-m-Y') }}</td>
+                                    <td>{{ $laporan->nama }}</td>
+                                    <td>Rp {{ number_format($laporan->total_harga, 0, ',', '.') }}</td>
+                                    <td>{{ ucfirst($laporan->status) }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <!-- End Table with stripped rows -->
 
                 </div>
             </div>
-
         </div>
     </div>
 </section>
@@ -53,18 +57,7 @@
 <script>
     // Function to handle printing
     function printReport() {
-        // Hide non-table elements
-        document.body.style.display = 'none';
-        document.getElementsByTagName('section')[0].style.display = 'block';
-        document.getElementsByClassName('pagetitle')[0].style.display = 'block';
-
-        // Print the table
         window.print();
-
-        // Restore display of non-table elements
-        document.body.style.display = 'block';
-        document.getElementsByTagName('section')[0].style.display = 'block';
-        document.getElementsByClassName('pagetitle')[0].style.display = 'block';
     }
 
     // Add click event listener to print button

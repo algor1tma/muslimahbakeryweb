@@ -24,7 +24,7 @@ class PesananSeeder extends Seeder
             'address' => 'Test Address',
             'catatan' => 'Specific notes',
             'total_harga' => 1000.00,
-            'status' => 'Belum lunas'
+            'status' => 'belum lunas',
         ]);
     }
 }

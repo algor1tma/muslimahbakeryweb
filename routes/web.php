@@ -30,7 +30,8 @@ Route::post('/user/storeuser',[AdminController::class,'storeuser'])->name('store
 Route::delete('user/{user}', [AdminController::class, 'deleteuser'])->name('deleteuser');
 
 
-Route::get('/laporan',[AdminController::class,'laporan'])->name('laporan');
+Route::get('/laporan', [AdminController::class, 'showLaporan'])->name('laporan');
+Route::post('/pesanan/{id}/lunas', [AdminController::class, 'markAsPaid'])->name('pesanan.lunas');
 
 Route::get('/produk',[AdminController::class,'produk'])->name('produk');
 Route::get('produk/{produk}/editproduk', [AdminController::class, 'editproduk'])->name('editproduk');
@@ -41,12 +42,14 @@ Route::post('/produk/storeproduk',[AdminController::class,'storeproduk'])->name(
 Route::delete('produk/{produk}', [AdminController::class, 'deleteproduk'])->name('deleteproduk');
 
 Route::get('/pesanan', [AdminController::class, 'pesanan'])->name('pesanan');
-Route::get('pesanan/{pesanan}/editpesanan', [AdminController::class, 'editpesanan'])->name('editpesanan');
+Route::get('pesanan/{pesanan}/detailpesanan', [AdminController::class, 'detailpesanan'])->name('detailpesanan');
 Route::put('pesanan/{pesanan}', [AdminController::class, 'updatepesanan'])->name('updatepesanan');
 Route::delete('pesanan/{pesanan}', [AdminController::class, 'deletepesanan'])->name('deletepesanan');
 // Route::get('/tambahpesanan',[AdminController::class,'tambahproduk'])->name('tambahproduk');
 Route::post('/pesanan/storepesanan', [AdminController::class, 'storepesanan'])->name('storepesanan');
 Route::delete('pesanan/{pesanan}', [AdminController::class, 'deletepesanan'])->name('deletepesanan');
+
+
 
 
 

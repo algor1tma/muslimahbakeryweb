@@ -11,15 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kirims', function (Blueprint $table) {
+        Schema::create('laporans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pesanan_id');
-            $table->unsignedBigInteger('admin_id');
+            $table->unsignedBigInteger('user_id');
             $table->enum('status', ['lunas', 'belum lunas']);
+            $table->timestamp('tanggal_pesanan');
+            $table->string('nama');
+            $table->unsignedBigInteger('admin_id');
+            $table->decimal('total_harga', 15, 2);
             $table->timestamps();
 
-            $table->foreign('pesanan_id')->references('id')->on('pesanans')->onDelete('cascade');
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kirims');
+        Schema::dropIfExists('laporans');
     }
 };

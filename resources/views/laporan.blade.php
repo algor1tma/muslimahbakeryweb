@@ -30,8 +30,8 @@
                                 <th>No</th>
                                 <th>Tanggal Pesanan</th>
                                 <th>Nama</th>
-                                <th>Price</th>
                                 <th>Status</th>
+                                <th>Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,8 +40,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ \Carbon\Carbon::parse($laporan->tanggal_pesanan)->format('d-m-Y') }}</td>
                                     <td>{{ $laporan->nama }}</td>
-                                    <td>Rp {{ number_format($laporan->total_harga, 0, ',', '.') }}</td>
                                     <td>{{ ucfirst($laporan->status) }}</td>
+                                    <td>Rp {{ number_format($laporan->total_harga, 0, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

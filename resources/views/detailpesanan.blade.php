@@ -52,11 +52,11 @@
               <table class="table datatable">
                 <thead>
                     <tr>
-                        <th class="text-center">No</th>
-                        <th class="text-center">Kue</th>
-                        <th class="text-center">Jumlah</th>
-                        <th class="text-center">Harga</th>
-                        <th class="text-center">Sub Total</th>
+                        <th >No</th>
+                        <th >Kue</th>
+                        <th >Jumlah</th>
+                        <th >Harga</th>
+                        <th >Sub Total</th>
                     </tr>
                 </thead>
                 <tbody>

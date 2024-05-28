@@ -25,10 +25,37 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    // public function index()
+    // {
+    //     $totalHarga = Pesanan::sum('total_harga');
+    //     $totalLaporan = Laporan::count();
+    //     $totalUsers = User::count();
+
+    //     return view('dashbord', compact('totalHarga', 'totalLaporan', 'totalUsers'));
+    //     // return view('dashbord');
+    // }
     public function index()
     {
-        return view('dashbord');
+        // Mengambil total harga dari tabel pesanans
+        $totalHarga = DB::table('laporans')->sum('total_harga');
+
+        // Menghitung jumlah laporan dari tabel laporans
+        $jumlahLaporan = DB::table('laporans')->count();
+
+        // Menghitung jumlah user dari tabel users
+        $jumlahUser = DB::table('users')->count();
+        $pesanans = Pesanan::with('user')->get();
+
+        return view('dashbord', compact('totalHarga', 'jumlahLaporan', 'jumlahUser', 'pesanans'));
     }
+    // public function index()
+    // {
+    //     $totalHarga = Pesanan::sum('total_harga');
+    //     $totalLaporan = Laporan::count();
+    //     $totalUsers = User::count();
+
+    //     return view('dashboard', compact('totalHarga', 'totalLaporan', 'totalUsers'));
+    // }
 
     public function user()
     {

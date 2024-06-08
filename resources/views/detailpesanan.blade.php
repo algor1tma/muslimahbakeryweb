@@ -1,5 +1,19 @@
 @extends('layout.app')
 @section('content')
+
+<div class="pagetitle">
+
+  <h1>Edit Data Admin</h1>
+  <nav>
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
+          <li class="breadcrumb-item active"><a href="{{ route('pesanan') }}">Pesanan</a></li>
+          <li class="breadcrumb-item active"><a href="{{ route('detailpesanan', $pesanan->id) }}">Detail Pesanan</a></li>
+      </ol>
+  </nav>
+
+</div><!-- End Page Title -->
+
 <section class="section profile">
   <div class="row">
     <div class="col-xl-4">
@@ -11,6 +25,7 @@
           <h3>{{ $user->phone }}</h3>
           <h3>{{ $user->email }}</h3>
           <h3>{{ $user->no_telp }}</h3>
+          <h3>{{ $pesanan->address }}</h3>
           {{-- <div class="social-links mt-2">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>

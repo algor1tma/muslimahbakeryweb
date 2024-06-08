@@ -35,19 +35,68 @@ class AdminController extends Controller
     //     // return view('dashbord');
     // }
     public function index()
-    {
-        // Mengambil total harga dari tabel pesanans
-        $totalHarga = DB::table('laporans')->sum('total_harga');
+{
+    // Mengambil total harga dari tabel pesanans
+    $totalHarga = DB::table('laporans')->sum('total_harga');
 
-        // Menghitung jumlah laporan dari tabel laporans
-        $jumlahLaporan = DB::table('laporans')->count();
+    // Menghitung jumlah laporan dari tabel laporans
+    $jumlahLaporan = DB::table('laporans')->count();
 
-        // Menghitung jumlah user dari tabel users
-        $jumlahUser = DB::table('users')->count();
-        $pesanans = Pesanan::with('user')->get();
+    // Menghitung jumlah user dari tabel users
+    $jumlahUser = DB::table('users')->count();
 
-        return view('dashbord', compact('totalHarga', 'jumlahLaporan', 'jumlahUser', 'pesanans'));
+    $pesanans = Pesanan::with('user')->get();
+
+    // Mengambil jumlah transaksi dan jumlah user berdasarkan bulan
+    $data = DB::table('laporans')
+        ->select(DB::raw('DATE_FORMAT(tanggal_pesanan, "%M") as month'), DB::raw('COUNT(*) as jumlahTransaksi'))
+        ->groupBy(DB::raw('YEAR(tanggal_pesanan)'), DB::raw('MONTH(tanggal_pesanan)'),'tanggal_pesanan')
+        ->get();
+
+    $userData = DB::table('users')
+        ->select(DB::raw('DATE_FORMAT(created_at, "%M") as month'), DB::raw('COUNT(*) as jumlahUser'))
+        ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'),'created_at')
+        ->get();
+
+    // Merging data transaksi dan data user berdasarkan bulan
+    $mergedData = [];
+    foreach ($data as $item) {
+        $month = \DateTime::createFromFormat('F', $item->month)->format('m');
+        $mergedData[$month] = [
+            'jumlahTransaksi' => $item->jumlahTransaksi,
+            'jumlahUser' => 0, // Inisialisasi jumlah user untuk bulan yang tidak memiliki data
+        ];
     }
+
+    foreach ($userData as $item) {
+        $month = \DateTime::createFromFormat('F', $item->month)->format('m');
+        if (array_key_exists($month, $mergedData)) {
+            $mergedData[$month]['jumlahUser'] = $item->jumlahUser;
+        } else {
+            $mergedData[$month] = [
+                'jumlahTransaksi' => 0, // Inisialisasi jumlah transaksi untuk bulan yang tidak memiliki data
+                'jumlahUser' => $item->jumlahUser,
+            ];
+        }
+    }
+
+    // Sorting data berdasarkan bulan
+    ksort($mergedData);
+
+    // Mengonversi data menjadi array untuk digunakan di view
+    $chartData = [];
+    foreach ($mergedData as $month => $values) {
+        $chartData[] = [
+            'month' => date('F', mktime(0, 0, 0, $month, 1)),
+            'jumlahTransaksi' => $values['jumlahTransaksi'],
+            'jumlahUser' => $values['jumlahUser'],
+        ];
+    }
+
+    return view('dashbord', compact('totalHarga', 'jumlahLaporan', 'jumlahUser', 'chartData', 'pesanans'));
+}
+
+
     // public function index()
     // {
     //     $totalHarga = Pesanan::sum('total_harga');

@@ -57,7 +57,13 @@
 <script>
     // Function to handle printing
     function printReport() {
+        var printContents = document.querySelector('.datatable').outerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
         window.print();
+        document.body.innerHTML = originalContents;
+        location.reload();  // To ensure the JavaScript and other functionalities are restored
     }
 
     // Add click event listener to print button

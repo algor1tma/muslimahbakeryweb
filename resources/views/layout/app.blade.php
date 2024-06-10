@@ -10,8 +10,9 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/new.png" rel="new">
-    <link href="assets/img/new.png" rel="new">
+    <link rel ="icon" type="image" href="{{ asset('assets/img/logo_projek.png') }}">
+    <link rel ="icon" type="image" href ="{{ asset('assets/img/logo_projek.png') }}">
+
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">

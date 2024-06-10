@@ -109,6 +109,9 @@ class AdminController extends Controller
     public function user()
     {
         $users = User::all();
+        // return response()->json(
+        //     $users
+        // );
         return view('user', compact('users'));
     }
 
@@ -438,16 +441,6 @@ class AdminController extends Controller
     
         return redirect()->route('pesanan')->with('error', 'Pesanan tidak ditemukan.');
     }
-    
-    
-    
-
-
-    
-    
-
-
-
     
     // public function tambahpesanan()
     // {
